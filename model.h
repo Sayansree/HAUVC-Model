@@ -5,7 +5,7 @@ class model{
     public:
         model();
         ~model();
-        
+        double update(double);
         
 
     private:
