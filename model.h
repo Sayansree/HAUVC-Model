@@ -4,9 +4,6 @@
 #include "action.h"
 #include "PID-Controller/PID.h"
 
-
-
-
 class model{
     public:
         model();

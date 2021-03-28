@@ -6,4 +6,10 @@ model::model(){
 model::~model(){
 
 }
-double update()
+double model::update(action cmd){
+
+}
+
+int main (){
+    return 0;
+}

@@ -1,5 +1,5 @@
-#ifndef MODEL_H
-#define MODEL_H
+#ifndef ACTION_H
+#define ACTION_H
 
 enum actionMode{
     disable,
