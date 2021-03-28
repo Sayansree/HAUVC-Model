@@ -8,7 +8,11 @@ model::model(){
 model::~model(){
 
 }
-
+double PID::trim(double val, double min, double max){
+    if(val>max)return max;
+    if(val<min)return min;
+    return val;
+}
 void model::setMode(actionMode mode){
     if(this->mode==mode)return;
     this->mode=mode;
@@ -19,9 +23,10 @@ double model::update(action cmd){
     switch(mode){
         case DISABLE:
             return 0;
-            break;
-        case NO_CORRECTION:
-
+        case VELOCITY_NO_CORRECTION:
+            return baseFunction(cmd.target_velocity);
+        case VELOCITY_CORRECTION:
+            return
     }
 }
 double model::baseFunction(double velocity){

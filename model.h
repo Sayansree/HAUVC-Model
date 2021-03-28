@@ -16,6 +16,7 @@ class model{
         actionMode mode;
         PID *displacementController,*velocityController;
         double baseFunction(double);
+        double trim(double, double, double);
         double a0,a1,a2;
 
 };

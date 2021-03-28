@@ -2,12 +2,13 @@
 #define ACTION_H
 
 enum actionMode{
-    DISABLE,
-    NO_CORRECTION,
-    VELOCITY_CORRECTION,
-    DISPLACEMENT_CORRECTION,
-    HOVER,
-    DUAL_CORRECTION
+    DISABLE,                /*CONTTROLLER OFF*/
+    HOVER,                  /*BASE FUNCTION + PID for VELOCITY and DISPLACEMENT WITH VELOCITY TARGET 0*/
+    DUAL_CORRECTION,        /*BASE FUNCTION + PID for VELOCITY and DISPLACEMENT independently*/
+    VELOCITY_NO_CORRECTION, /*velocity mode BASE FUNCTION only*/
+    VELOCITY_CORRECTION,    /*velocity mode BASE FUNCTION + PID for VELOCITY*/
+    DISPLACEMENT_CORRECTION,/*displacement mode PID for DISPLACEMENT*/
+    
 };
 
 struct action{
