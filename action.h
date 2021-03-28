@@ -4,8 +4,10 @@
 enum actionMode{
     DISABLE,                /*CONTTROLLER/THRUSTERS OFF*/
     
+    //mixed controls
     HOVER,                  /*BASE FUNCTION + PID for VELOCITY and DISPLACEMENT WITH VELOCITY TARGET 0*/
     HYBRID,                 /*BASE FUNCTION + PID for VELOCITY and DISPLACEMENT*/
+    SINGLE_CORRECTION,      /*BASE FUNCTION + PID for DISPLACEMENT*/
     DUAL_CORRECTION,        /* PID for VELOCITY and DISPLACEMENT independently*/
     
     //velocity control

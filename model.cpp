@@ -23,20 +23,26 @@ double model::update(action cmd){
     switch(mode){
         case DISABLE:
             return 0;
+            
         case HOVER:
             double baseFunc=baseFunction(0);
             double errorVel=0-cmd.actual_velocity;
             double errorDisp=cmd.target_displacement-cmd.actual_displacement;
             double pidVel=velocityController->update(errorVel);
             double pidDisp= displacementController->update(errorDisp);
-            return trim(pidVel+pidDisp,-1,1);
+            return trim(pidVel+pidDisp+baseFunc,-1,1);
         case HYBRID:
             double baseFunc=baseFunction(cmd.actual_velocity);
             double errorVel=cmd.target_velocity-cmd.actual_velocity;
             double errorDisp=cmd.target_displacement-cmd.actual_displacement;
             double pidVel=velocityController->update(errorVel);
             double pidDisp= displacementController->update(errorDisp);
-            return trim(pidVel+pidDisp,-1,1);
+            return trim(pidVel+pidDisp+baseFunc,-1,1);
+        case SINGLE_CORRECTION:
+            double baseFunc=baseFunction(cmd.actual_velocity);
+            double errorDisp=cmd.target_displacement-cmd.actual_displacement;
+            double pidDisp= displacementController->update(errorDisp);
+            return trim(baseFunc+pidDisp,-1,1);
         case DUAL_CORRECTION:
             double errorDisp=cmd.target_displacement-cmd.actual_displacement;
             double errorVel=cmd.target_velocity-cmd.actual_velocity;
