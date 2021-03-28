@@ -8,6 +8,13 @@ model::model(){
 model::~model(){
 
 }
+
+void model::setMode(actionMode mode){
+    if(this->mode==mode)return;
+    this->mode=mode;
+    displacementController->reset();
+    velocityController->reset();
+}
 double model::update(action cmd){
     switch(mode){
         case DISABLE:

@@ -9,6 +9,7 @@ class model{
         model();
         ~model();
         double update(action);
+        void setMode(actionMode);
         
 
     private:
