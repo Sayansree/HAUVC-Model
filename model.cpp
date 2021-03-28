@@ -8,7 +8,7 @@ model::model(){
 model::~model(){
 
 }
-double PID::trim(double val, double min, double max){
+double model::trim(double val, double min, double max){
     if(val>max)return max;
     if(val<min)return min;
     return val;
@@ -23,47 +23,47 @@ double model::update(action cmd){
     switch(mode){
         case DISABLE:
             return 0;
-            
-        case HOVER:
+
+        case HOVER:{
             double baseFunc=baseFunction(0);
             double errorVel=0-cmd.actual_velocity;
             double errorDisp=cmd.target_displacement-cmd.actual_displacement;
             double pidVel=velocityController->update(errorVel);
             double pidDisp= displacementController->update(errorDisp);
-            return trim(pidVel+pidDisp+baseFunc,-1,1);
-        case HYBRID:
+            return trim(pidVel+pidDisp+baseFunc,-1,1);}
+        case HYBRID:{
             double baseFunc=baseFunction(cmd.actual_velocity);
             double errorVel=cmd.target_velocity-cmd.actual_velocity;
             double errorDisp=cmd.target_displacement-cmd.actual_displacement;
             double pidVel=velocityController->update(errorVel);
             double pidDisp= displacementController->update(errorDisp);
-            return trim(pidVel+pidDisp+baseFunc,-1,1);
-        case SINGLE_CORRECTION:
+            return trim(pidVel+pidDisp+baseFunc,-1,1);}
+        case SINGLE_CORRECTION:{
             double baseFunc=baseFunction(cmd.actual_velocity);
             double errorDisp=cmd.target_displacement-cmd.actual_displacement;
             double pidDisp= displacementController->update(errorDisp);
-            return trim(baseFunc+pidDisp,-1,1);
-        case DUAL_CORRECTION:
+            return trim(baseFunc+pidDisp,-1,1);}
+        case DUAL_CORRECTION:{
             double errorDisp=cmd.target_displacement-cmd.actual_displacement;
             double errorVel=cmd.target_velocity-cmd.actual_velocity;
             double pidVel=velocityController->update(errorVel);
             double pidDisp= displacementController->update(errorDisp);
-            return trim(pidVel+pidDisp,-1,1);
+            return trim(pidVel+pidDisp,-1,1);}
 
         case VELOCITY_NO_CORRECTION:
             return baseFunction(cmd.target_velocity);
-        case VELOCITY_NO_BASE:
+        case VELOCITY_NO_BASE:{
             double errorVel=cmd.target_velocity-cmd.actual_velocity;
-            return velocityController->update(errorVel);
-        case VELOCITY_CORRECTION:
+            return velocityController->update(errorVel);}
+        case VELOCITY_CORRECTION:{
             double baseFunc=baseFunction(cmd.target_velocity);
             double errorVel=cmd.target_velocity-cmd.actual_velocity;
             double pidVel=velocityController->update(errorVel);
-            return trim(pidVel+baseFunc,-1,1);
+            return trim(pidVel+baseFunc,-1,1);}
         
-        case DISPLACEMENT:
+        case DISPLACEMENT:{
             double errorDisp=cmd.target_displacement-cmd.actual_displacement;
-            return displacementController->update(errorDisp);
+            return displacementController->update(errorDisp);}
     }
 }
 double model::baseFunction(double velocity){
