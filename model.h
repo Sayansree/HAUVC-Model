@@ -12,7 +12,10 @@ class model{
         
 
     private:
-        
+        actionMode mode;
+        PID *displacementController,*velocityController;
+        double baseFunction(double);
+        double a0,a1,a2;
 
 };
 #endif
