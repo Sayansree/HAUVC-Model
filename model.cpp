@@ -26,7 +26,17 @@ double model::update(action cmd){
         case VELOCITY_NO_CORRECTION:
             return baseFunction(cmd.target_velocity);
         case VELOCITY_CORRECTION:
-            return
+            double baseFunc=baseFunction(cmd.target_velocity);
+            double errorVel=cmd.target_velocity-cmd.actual_velocity;
+            double pidVel=velocityController->update(errorVel);
+            return trim(pidVel+baseFunc,-1,1);
+        case DISPLACEMENT_CORRECTION:
+            double errorDisp=cmd.target_displacement-cmd.actual_displacement;
+            return displacementController->update(errorDisp);
+        case DUAL_CORRECTION:
+            double baseFunc=baseFunction(cmd.target_velocity);
+            double errorVel=cmd.target_velocity-cmd.actual_velocity;
+            double pidVel=velocityController->update(errorVel);
     }
 }
 double model::baseFunction(double velocity){
