@@ -10,8 +10,10 @@ class model{
         ~model();
         double update(action);
         void setMode(actionMode);
-        
-
+        void setCoeff(double,double,double);
+        void setVelWeights(double,double,double);
+        void setDispWeights(double,double,double);
+        void setILimits(double,double);
     private:
         actionMode mode;
         PID *displacementController,*velocityController;

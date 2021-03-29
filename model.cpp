@@ -3,10 +3,27 @@
 model::model(){
     displacementController=new PID();
     velocityController=new PID();
+    displacementController->setPIDLimits(-1,1);
+    velocityController->setPIDLimits(-1,1);
     mode=DISABLE;
 }
 model::~model(){
 
+}
+void model::setILimits(double lo,double hi){
+    velocityController->setILimits(lo,hi);
+    displacementController->setILimits(lo,hi);
+}
+void model::setVelWeights(double Kp,double Ki,double Kd){
+    velocityController->setWeights(Kp,Ki,Kd);
+}
+void model::setDispWeights(double Kp,double Ki,double Kd){
+    displacementController->setWeights(Kp,Ki,Kd);
+}
+void model::setCoeff(double a2,double a1,double a0){
+    this->a2=a2;
+    this->a1=a1;
+    this->a0=a0;
 }
 double model::trim(double val, double min, double max){
     if(val>max)return max;
