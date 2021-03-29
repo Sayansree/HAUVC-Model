@@ -1,3 +1,7 @@
+/* written by Sayansree Paria
+ * email : sayansreeparia@gmail.com
+ * github : https://github.com/Sayansree
+ */
 #ifndef MODEL_H
 #define MODEL_H
 

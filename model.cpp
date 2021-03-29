@@ -1,3 +1,7 @@
+/* written by Sayansree Paria
+ * email : sayansreeparia@gmail.com
+ * github : https://github.com/Sayansree
+ */
 #include "model.h"
 
 model::model(){
@@ -85,7 +89,4 @@ double model::update(action cmd){
 }
 double model::baseFunction(double velocity){
    return a2*velocity*velocity + a1*velocity + a0;
-}
-int main (){
-    return 0;
 }
