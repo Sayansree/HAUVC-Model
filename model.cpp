@@ -29,16 +29,16 @@ void model::setCoeff(double a2,double a1,double a0){
     this->a1=a1;
     this->a0=a0;
 }
-double model::trim(double val, double min, double max){
-    if(val>max)return max;
-    if(val<min)return min;
-    return val;
-}
 void model::setMode(actionMode mode){
     if(this->mode==mode)return;
     this->mode=mode;
     displacementController->reset();
     velocityController->reset();
+}
+double model::trim(double val, double min, double max){
+    if(val>max)return max;
+    if(val<min)return min;
+    return val;
 }
 double model::update(action cmd){
     switch(mode){
