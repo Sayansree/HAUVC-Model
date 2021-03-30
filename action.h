@@ -1,6 +1,14 @@
 #ifndef ACTION_H
 #define ACTION_H
 
+enum {
+    PITCH,
+    ROLL,
+    YAW,
+    SURGE,
+    SWAY,
+    HEAVE
+};
 enum actionMode{
     DISABLE,                /*CONTTROLLER/THRUSTERS OFF*/
     
