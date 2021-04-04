@@ -9,7 +9,6 @@ enum {
     SWAY,
     HEAVE
 };
-std::string DOF_NAME[6]={"PITCH","ROLL","YAW","SURGE","SWAY","HEAVE"};
 enum actionMode{
     DISABLE,                /*CONTTROLLER/THRUSTERS OFF*/
     
