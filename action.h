@@ -1,7 +1,7 @@
 #ifndef ACTION_H
 #define ACTION_H
 #include<string>
-enum {
+enum axis{
     PITCH,
     ROLL,
     YAW,
